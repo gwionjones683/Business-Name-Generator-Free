@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Free Business Name Generator — Instant Brand Names</title>
+  <meta name="description" content="Generate brandable business, app and product names. Save favorites, copy results and test domains — free, fast, and beginner-friendly."/>
+  <meta name="theme-color" content="#0b74de" />
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg: #0f1724;
+      --card: linear-gradient(180deg,#0b1220 0%, #071026 100%);
+      --muted: #9fb3d6;
+      --accent: #60a5fa;
+      --glass: rgba(255,255,255,0.04);
+      --glass-2: rgba(255,255,255,0.02);
+      --radius: 14px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: radial-gradient(1200px 600px at 10% 10%, rgba(96,165,250,0.06), transparent 8%),
+                  radial-gradient(900px 500px at 90% 90%, rgba(96,165,250,0.03), transparent 10%),
+                  var(--bg);
+      color:#e6f0ff;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      padding:28px;
+      display:flex;
+      align-items:flex-start;
+      justify-content:center;
+    }
+
+    .wrap{width:100%;max-width:1100px}
+
+    header{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:18px}
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{
+      width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,#60a5fa,#3b82f6);display:grid;place-items:center;box-shadow:0 6px 30px rgba(11,59,121,0.35);
+    }
+    .logo svg{filter:drop-shadow(0 6px 14px rgba(0,0,0,0.25));}
+    h1{font-size:20px;margin:0}
+    .tag{color:var(--muted);font-size:13px;margin-top:2px}
+
+    main.card{
+      background:var(--card);
+      border-radius:var(--radius);
+      padding:20px;
+      box-shadow: 0 10px 40px rgba(2,6,23,0.6);
+      border: 1px solid rgba(255,255,255,0.03);
+    }
+
+    .controls{display:grid;grid-template-columns:1fr 220px;gap:12px;margin-top:12px}
+    @media (max-width:760px){ .controls{grid-template-columns:1fr; } }
+
+    input[type="text"], select{
+      width:100%;
+      padding:12px 14px;
+      border-radius:10px;
+      border:1px solid rgba(255,255,255,0.06);
+      background:transparent;
+      color:inherit;
+      outline:none;
+      font-size:15px;
+    }
+
+    .btn{
+      display:inline-flex;align-items:center;gap:10px;padding:11px 14px;border-radius:10px;border:0;background:linear-gradient(90deg,#60a5fa,#3b82f6);color:#062244;font-weight:700;cursor:pointer;font-size:15px;
+      box-shadow: 0 8px 30px rgba(59,130,246,0.12), inset 0 -2px 6px rgba(255,255,255,0.06);
+    }
+    .btn.secondary{background:transparent;border:1px solid rgba(255,255,255,0.05);color:var(--muted);font-weight:600}
+
+    .meta{display:flex;gap:10px;align-items:center;color:var(--muted);font-size:13px;margin-top:10px}
+
+    .panel{display:grid;grid-template-columns:2fr 1fr;gap:14px;margin-top:18px}
+    @media (max-width:900px){ .panel{grid-template-columns:1fr} }
+
+    .panel .left{padding:14px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));border-radius:12px;border:1px solid rgba(255,255,255,0.02)}
+    .panel .right{padding:14px;border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,0.015),transparent);border:1px solid rgba(255,255,255,0.02)}
+
+    .results{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+    .namecard{
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:10px;padding:12px;border:1px solid rgba(255,255,255,0.03);
+      display:flex;flex-direction:column;gap:8px;
+      transition:transform .18s ease, box-shadow .18s ease;
+    }
+    .namecard:hover{transform:translateY(-6px);box-shadow:0 20px 40px rgba(2,6,23,0.6)}
+    .name-top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+    .brandname{font-weight:700;font-size:15px;letter-spacing:0.2px}
+    .domain{font-size:12px;color:var(--muted)}
+
+    .name-actions{display:flex;gap:8px}
+    .ico-btn{background:transparent;border:1px solid rgba(255,255,255,0.03);padding:8px;border-radius:8px;color:var(--muted);cursor:pointer;font-weight:600}
+
+    .favs{font-size:13px;color:var(--muted);min-height:36px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+    .chip{background:rgba(255,255,255,0.03);padding:6px 8px;border-radius:999px;border:1px solid rgba(255,255,255,0.02)}
+
+    footer.small{color:var(--muted);font-size:13px;margin-top:14px;text-align:center}
+
+    /* subtle helper */
+    .muted{color:var(--muted)}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="logo" aria-hidden="true">
+          <!-- simple geometric logo -->
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect x="3" y="3" width="8" height="8" rx="2" fill="white" opacity="0.9"/>
+            <rect x="13" y="13" width="8" height="8" rx="2" fill="white" opacity="0.7"/>
+          </svg>
+        </div>
+        <div>
+          <h1>Free Business Name Generator</h1>
+          <div class="tag">Instant, brandable names — no signup, free to use</div>
+        </div>
+      </div>
+
+      <div class="meta">
+        <div class="muted">Built for search & discovery</div>
+      </div>
+    </header>
+
+    <main class="card" role="application" aria-labelledby="generatorTitle">
+      <h2 id="generatorTitle">Try it — enter keywords</h2>
+      <div class="muted" style="margin-top:6px">Type keywords (comma separated) — e.g. <strong>coffee, fitness, travel</strong> — then choose a style.</div>
+
+      <div class="controls" style="margin-top:12px">
+        <input id="keywords" type="text" placeholder="Enter keywords (comma separated), or leave blank for random" aria-label="keywords input" />
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <select id="type" aria-label="generator type" style="margin-bottom:6px">
+            <option value="combo">Adjective + Keyword + Noun</option>
+            <option value="suffix">Keyword + Trendy Suffix</option>
+            <option value="blend">Blend (portmanteau)</option>
+            <option value="short">Short / One-word</option>
+          </select>
+          <button id="generate" class="btn" aria-live="polite">Generate 24 Names</button>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="left">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div>
+              <div class="muted">Results</div>
+              <div style="font-weight:700;font-size:13px">24 names · click copy ★ save favorites</div>
+            </div>
+            <div style="display:flex;gap:8px">
+              <button id="copyAll" class="btn secondary" title="Copy all names">Copy All</button>
+              <button id="saveAll" class="btn secondary" title="Save all shown">Save All</button>
+            </div>
+          </div>
+
+          <div id="results" class="results" style="margin-top:12px" aria-live="polite"></div>
+        </div>
+
+        <aside class="right" aria-labelledby="favTitle">
+          <h3 id="favTitle" style="margin:0 0 8px 0">Saved favorites</h3>
+          <div class="favs" id="favs">(none)</div>
+
+          <div style="margin-top:12px">
+            <div class="muted" style="font-size:13px">Quick lists</div>
+            <ul style="padding-left:18px;margin-top:8px">
+              <li><a href="coffee-shop-names.html">Coffee shop name ideas</a></li>
+              <li><a href="tech-startup-names.html">Tech startup name ideas</a></li>
+              <li><a href="app-name-ideas.html">Short app name ideas</a></li>
+              <li><a href="ecommerce-names.html">Ecommerce store name ideas</a></li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+
+      <div style="margin-top:14px" class="muted">Tip: try keywords + a style (e.g., <em>coffee</em> + <em>suffix</em>) to get short brand names with domain-friendly endings.</div>
+    </main>
+
+    <footer class="small">
+      <div style="margin-top:10px">This site saves favorites only in your browser. Read the <a href="privacy.html">privacy policy</a>.</div>
+    </footer>
+  </div>
+
+<script>
+/* ===========================
+   Data + Generators (robust)
+   =========================== */
+const ADJ = ["Bright","Swift","Blue","Prime","Fresh","Urban","Clever","Nova","Bold","True","Pure","Mighty","Luna","Echo","Pixel","Apex","Kind","Sunny","Silver","North"];
+const NOUN = ["Lab","Works","Hub","Studio","Nest","Co","Wave","Forge","Cloud","Box","Hive","Shift","Craft","Loop","Market","Field","Trail","Peak","Bridge","Port"];
+const SUFFIX = ["ly","io","ify","up","gen","hub","space","co","mate","ster"];
+const SYLL = ["ar","io","exa","ly","vox","in","zen","ora","uno","eva","tri","sol","neo","bit","qui","tra","plo","sha","mo","va"];
+
+function pick(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+function randInt(n){ return Math.floor(Math.random()*n); }
+function slugify(s){ return s.toLowerCase().replace(/[^a-z0-9]+/g,'').slice(0,28); }
+
+/* generators */
+function genCombo(keys){
+  const adj = pick(ADJ);
+  const noun = pick(NOUN);
+  const k = keys.length ? keys[randInt(keys.length)] : "";
+  return `${adj}${k?(' '+capitalize(k)):''} ${noun}`.trim();
+}
+function genSuffix(keys){
+  const k = keys.length ? keys[randInt(keys.length)].replace(/\s+/g,'') : pick(NOUN).toLowerCase();
+  return k + pick(SUFFIX);
+}
+function genBlend(keys){
+  const a = keys.length ? keys[randInt(keys.length)] : pick(ADJ);
+  const b = pick(NOUN);
+  const aC = a.replace(/[^a-zA-Z]/g,'').toLowerCase();
+  const bC = b.replace(/[^a-zA-Z]/g,'').toLowerCase();
+  const res = aC.slice(0, Math.ceil(aC.length/2)) + bC.slice(Math.floor(bC.length/2));
+  return capitalize(res);
+}
+function genShort(){
+  const s = pick(SYLL) + pick(SYLL);
+  return capitalize(s.slice(0,6));
+}
+function capitalize(s){ return s.charAt(0).toUpperCase() + s.slice(1); }
+
+/* master generate */
+function generate({type, keywords, count=24}){
+  const keys = keywords.map(k=>k.trim()).filter(Boolean);
+  const out = new Set();
+  let attempts = 0;
+  while(out.size < count && attempts < count*6){
+    let n = "";
+    if(type === "combo") n = genCombo(keys);
+    else if(type === "suffix") n = genSuffix(keys);
+    else if(type === "blend") n = genBlend(keys);
+    else n = genShort();
+    // clean double spaces
+    n = n.replace(/\s+/g,' ').trim();
+    out.add(n);
+    attempts++;
+  }
+  return Array.from(out);
+}
+
+/* ===========================
+   UI wiring
+   =========================== */
+const resultsEl = document.getElementById('results');
+const favsEl = document.getElementById('favs');
+
+function renderCards(list){
+  resultsEl.innerHTML = '';
+  list.forEach(name=>{
+    const card = document.createElement('div');
+    card.className = 'namecard';
+    const domain = slugify(name) + '.com';
+    card.innerHTML = `
+      <div class="name-top">
+        <div>
+          <div class="brandname">${name}</div>
+          <div class="domain">${domain} · ${slugify(name)}.ai</div>
+        </div>
+        <div class="name-actions">
+          <button class="ico-btn copy" data-name="${name}" title="Copy name">Copy</button>
+          <button class="ico-btn fav" data-name="${name}" title="Save favorite">★</button>
+        </div>
+      </div>
+    `;
+    resultsEl.appendChild(card);
+  });
+  // bind actions
+  resultsEl.querySelectorAll('.copy').forEach(b=>b.addEventListener('click', e=>{
+    navigator.clipboard.writeText(e.target.dataset.name);
+    e.target.textContent = '✓';
+    setTimeout(()=>e.target.textContent = 'Copy',900);
+  }));
+  resultsEl.querySelectorAll('.fav').forEach(b=>b.addEventListener('click', e=>{
+    saveFavorite(e.target.dataset.name);
+    e.target.textContent = '★';
+  }));
+}
+
+function loadFavorites(){ try{ return JSON.parse(localStorage.getItem('bnb_favs')||'[]'); }catch(e){return [];} }
+function saveFavorites(list){ localStorage.setItem('bnb_favs', JSON.stringify(list)); renderFavs(); }
+function saveFavorite(name){ const f = loadFavorites(); if(!f.includes(name)) f.push(name); saveFavorites(f); }
+function renderFavs(){ const f = loadFavorites(); if(!f.length){ favsEl.textContent = '(none)'; return } favsEl.innerHTML = ''; f.slice(-30).reverse().forEach(n=>{ const c = document.createElement('div'); c.className='chip'; c.textContent = n; favsEl.appendChild(c); }) }
+
+/* events */
+document.getElementById('generate').addEventListener('click', ()=>{
+  const raw = document.getElementById('keywords').value;
+  const keys = raw ? raw.split(',').map(s=>s.trim()).filter(Boolean) : [];
+  const type = document.getElementById('type').value;
+  const list = generate({type, keywords: keys, count:24});
+  renderCards(list);
+});
+document.getElementById('copyAll').addEventListener('click', ()=>{
+  const names = Array.from(resultsEl.querySelectorAll('.brandname')).map(e=>e.textContent).join('\\n');
+  if(!names) { alert('No results to copy — click Generate'); return; }
+  navigator.clipboard.writeText(names).then(()=>alert('Copied all names'));
+});
+document.getElementById('saveAll').addEventListener('click', ()=>{
+  const arr = Array.from(resultsEl.querySelectorAll('.brandname')).map(e=>e.textContent);
+  const favs = loadFavorites();
+  arr.forEach(n=>{ if(!favs.includes(n)) favs.push(n); });
+  saveFavorites(favs);
+  alert('Saved shown names');
+});
+
+/* initial */
+renderFavs();
+document.getElementById('generate').click();
+</script>
+</body>
+</html>
